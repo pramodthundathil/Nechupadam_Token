@@ -1,0 +1,128 @@
+{% extends "index.html" %}
+
+{% block content %}
+<style>
+    .button1 {
+        padding: 10px 20px;
+        border: .5px solid rgb(80, 73, 10);
+        ;
+        border-radius: 5px;
+        font-weight: 500;
+        color: white;
+        background-image: linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+
+    }
+
+    .button1:hover {
+        background-image: linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
+
+
+    }
+    input,select{
+        padding: 10px;
+        width: 80%;
+    
+    }
+    h5{
+        border-bottom:.5px solid gray ;
+    }
+
+</style>
+
+<div class="container mt-4">
+    {% for message in messages  %}
+          <h6 style="color:rgb(59, 59, 164);text-align:center;">{{message}}</h6>
+    {% endfor %}
+    <div class="row justify-content-center">
+        <div class="col">
+        <div class="itemcontainer text-center">
+            <h3>Admin Actions</h3>
+
+            <a href="{%url 'TokenReset' %}" class="btn btn-info">Reset Tokens</a>
+            <a href="{%url 'ClearHistory' %}" class="btn btn-warning">Clear All History</a>
+
+            <br><br>
+        </div>
+
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 ">
+            <div class="itemcontainer text-center">
+                <h4>Add New Treatment Category</h4>
+                <br><br>
+                <form action="{%url 'AddCategory' %}" method="post">
+                    {% csrf_token %}
+                    {% for field in form1  %}
+                    Treatment Category: <br>
+                  {{field}} <br>
+                    {% endfor %}
+                    <br><br>
+                    <button class="button1" type="submit">Add Category</button>
+                    <br><br>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="itemcontainer text-center">
+                <h4>Add New Chair Number</h4>
+                <br><br>
+                <form action="{%url 'AddChair' %}" method="post">
+                    {% csrf_token %}
+                    {% for field in form2  %}
+                    {{field.label}}: <br>
+                  {{field}} <br>
+                    {% endfor %}
+                    <br><br>
+
+                    <button class="button1" type="submit">Add Chair</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="itemcontainer text-center">
+                <h5>Category List</h5>
+                <table class="table table-striped mt-2">
+                    {% for item in tcat  %}
+                      
+                    <tr>
+                        <td>{{item.title}}</td>
+                        <td><a href="{%url 'DeleteCategory' item.id %}" class="btn btn-outline-danger">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="itemcontainer text-center">
+                <h5>Chair List</h5>
+                <table class="table table-striped mt-2">
+                    {% for item in chair %}
+                      
+                    <tr>
+                        <td>{{item.Chair_number}}</td>
+                        <td><a href="{%url 'DeleteChair' item.id %}" class="btn btn-outline-danger">Delete</a></td>
+
+                    </tr>
+                    {% endfor %}
+
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="container text-center">
+    <br><br>
+    <h3>Patient Appoinment History</h3><br><br>
+    {% for message in messages  %}
+          <h6 style="color:rgb(59, 59, 164);text-align:center;">{{message}}</h6>
+    {% endfor %}
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Patient Name</th>
+        <th>Age</th>
+        <th>Phone Number</th>
+        <th>Treatment Category</th>
+        <th>Chair Number</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+{% for item in patients %}
+    <tr>
+        <td>{{item.Date}}</td>
+        <td>{{item.Patients_Name}}</td>
+        <td>{{item.Patients_Age}}</td>
+        <td>{{item.Phone_Number}}</td>
+        <td>{{item.Treatment_Category}}</td>
+        <td>{{item.Chair_Number}}</td>
+        {% if item.Status == False %}
+        <td style="color:blue">Pending..</td>
+        {% else %}
+        <td style="color:Green">Completed</td>
+        {% endif %}
+        <td><a href="{%url 'DeletePatient' item.id %}" class="btn btn-outline-danger">Delete</a></td>
+    </tr>
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

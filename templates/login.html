@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{%static 'css/styles.css' %}">
+</head>
+<body style="background-image:linear-gradient(to right, rgb(237, 209, 99), rgb(249, 231, 159));">
+
+        <div class="myheader">
+            <img src="{%static 'images/nechu.jpg' %}" height="40px;" class="logo">
+        </div>
+        <div class="center">
+            <h1 class="log"><b>Login</b></h1>
+            {% for message in messages %}
+            <h6 style="color:red">{{message}}</h6>
+            {% endfor %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="textfield">
+                    <input type="text" name="uname" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="textfield">
+                    <input type="password" name="pswd" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <br>
+                <input type="submit" value="Login" class="loginbutton">
+            </form>
+        </div>
+
+
+        
+
+        <div class="footer">
+            <div class="foot">
+                <p>Nechupadam Dental Clinic &copy <span id="year"></span> | Powered by Zion</p>
+            </div>
+        </div>
+
+<script src="{%static 'nechu.js' %}"></script>
+</body>
+</html>

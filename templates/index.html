@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{%static 'images/nechu.jpg' %}" type="image/x-icon">
+    <title>Nechupadam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="{%static 'bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    
+    <style>
+        .modal-body input,select{
+            padding: 10px;
+            width: 80%;
+        
+        }
+        .serving{
+            animation: anim1;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+                    }
+                    @keyframes anim1 {
+                        from{
+                            background-color: rgb(237, 209, 99);
+                        }
+                        to{
+                            background-color: rgb(249, 231, 159) ;
+                        }
+                        
+                    }
+    </style>
+</head>
+
+<body>
+    <!-- logo navbar -->
+    <nav class="navbar nav-bar-logo">
+        <div class="container">
+            <div style="margin: auto;">
+                <a class="navbar-brand" href="{%url 'Index' %}">
+                    <img src="{%static 'images/nechu.jpg' %}" alt="Bootstrap" width="auto" height="40px">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- main navbar -->
+    <nav class="navbar nav-bar-logo">
+        <form class="container-fluid justify-content-center mt-1">
+            <a href="{%url 'Index' %}" class="button2 me-5">Home</a>
+            <a class="button2 me-5" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                type="button">Generate Token</a>
+            <a class="button2 me-5" href="{%url 'AddScreen' %}" type="button">Utility</a>
+            <a class="button2 me-5" href="{%url 'History' %}" type="button">History</a>
+            <a class="button2 me-5" href="{%url 'SignOut' %}" type="button">Logout</a>
+        </form>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Generate Token</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{%url 'AddPatient' %}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        {% for fields in form %}
+                        {{fields.label}}: <br>
+                        {{fields}} <br><br>
+                          
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="button2">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% block content %}
+
+    
+    
+    <!-- table start -->
+    <div class="container mt-4 text-center">
+        {% for message in messages %}
+<h6 style="color: rgb(45, 45, 153);text-align:center">{{message}}</h6>
+  
+{% endfor %}
+        <table class="table table-striped">
+
+            <thead>
+                <th>Token Number</th>
+                <th>Date And Time</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Category</th>
+                <th>Seat No.</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for patient in patients  %}
+                {% if patient.call_status == "serving" %}
+                <tr class="serving">
+                    <td>{{patient.token}}</td>
+                    <td>{{patient.time}}</td>
+                    <td data-label="Name">{{patient.Patient.Patients_Name}}</td>
+                    <td data-label="Phone">{{patient.Patient.Phone_Number}}</td>
+                    <td data-label="Category">{{patient.Patient.Treatment_Category}}</td>
+                    <td data-label="Seat No.">{{patient.Patient.Chair_Number}}</td>
+                    <td> 
+                        <a href="{%url 'TokenCall' patient.id %}" class="btn btn-outline-info">Cancel Call</a>
+                        <a href="{%url 'StatusChange' patient.id %}" class="btn btn-outline-danger">Remove</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td>{{patient.token}}</td>
+                    <td>{{patient.time}}</td>
+                    <td data-label="Name">{{patient.Patient.Patients_Name}}</td>
+                    <td data-label="Phone">{{patient.Patient.Phone_Number}}</td>
+                    <td data-label="Category">{{patient.Patient.Treatment_Category}}</td>
+                    <td data-label="Seat No.">{{patient.Patient.Chair_Number}}</td>
+                    <td> 
+                        <a href="{%url 'TokenCall' patient.id %}" class="btn btn-outline-info">Call</a>
+                        <a href="{%url 'StatusChange' patient.id %}" class="btn btn-outline-danger">Remove</a>
+                    </td>
+                </tr>
+                {% endif %}
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- table end -->
+    {% endblock %}
+<br><br><br><br>
+    <div class="footer">
+        <div class="foot">
+            <p>Nechupadam Dental Clinic &copy <span id="year"></span> | Powered by Zion</p>
+        </div>
+    </div>
+
+
+    <script src="{%static 'bootstrap/bootstrap.js' %}"></script>
+
+</body>
+
+</html>

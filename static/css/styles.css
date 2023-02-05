@@ -1,0 +1,401 @@
+body{
+    background-image:linear-gradient(to right, rgb(237, 209, 99), rgb(249, 231, 159));
+    background-color: rgb(237, 209, 99);
+}
+.myheader
+{
+    top:0;
+    left:0;
+    background-color:rgb(249, 231, 159);
+    height:60px;
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.mycontainer
+{
+    background-color:rgb(249, 231, 159);
+    height:150px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    position:fixed;
+    margin-top:52px;
+    left:0;
+    z-index: 1;
+}
+
+@media (max-width:975px)
+{
+    .mycontainer
+    {
+        height:350px;
+    }
+
+    table{
+        margin-top: 200px;
+    }
+
+
+
+}
+
+@media (max-width:478px)
+{
+    .mycontainer
+    {
+        height:600px;
+    }
+
+    table{
+        margin-top: 600px;
+    }
+    table thead{
+        display:none;
+    }
+
+    table, table tbody, table tr, table td{
+        display: block;
+        width:100%;
+    }
+    table tr{
+        margin-bottom: 15px;
+    }
+    table td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+    table td::before{
+        content:attr(data-label);
+        position:absolute;
+        left:0;
+        width:50%;
+        padding-left: 15px;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+}
+
+.button2
+{
+    background-image:linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    width: 140px;
+    margin: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 15px;
+    float:left;
+    font-family: verdana;
+    border:none;
+    color:white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button2:hover
+{
+    background-image:linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
+}
+
+
+
+
+
+
+.footer
+{
+    width:100%;
+    bottom:0;
+    left:0;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: fixed;
+    overflow: hidden;
+}
+
+.foot
+{
+    font-family:verdana;
+    text-align: center;
+    padding: 10px;
+    font-size:smaller;
+}
+
+.logo
+{
+    padding:10px;
+}
+
+.center 
+{
+    font-family:Verdana;
+    overflow:hidden;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    width:280px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding:15px;
+    border-radius: 10px;
+}
+
+.log
+{
+    text-align: center;
+    font-size: 20px;
+    color:rgb(135, 123, 16);
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid rgb(135, 123, 16);
+}
+
+.center form
+{
+    padding:20px;
+    box-sizing: border-box;
+}
+
+form .textfield
+{
+    position:relative;
+    border-bottom: 1px solid rgb(135, 123, 16);
+    margin:20px 0;
+
+}
+
+.textfield input 
+{
+    width:100%;
+    padding:0 5px;
+    height:40px;
+    font-size: 16px;
+    border:none;
+    background: none;
+    outline: none;
+}
+
+.textfield label
+{
+    position:absolute;
+    top:30%;
+    left:5px;
+    color:grey;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.textfield span::before
+{
+    content:'';
+    position:absolute;
+    top:40px;
+    left:0;
+    width:0;
+    height:2px;
+    background:grey;
+    transition: 0.5s;
+}
+
+.textfield input:focus ~ label,
+.textfield input:valid ~ label
+{
+    top:-17px;
+    color:grey;
+}
+
+.textfield input:focus ~ span::before,
+.textfield input:valid ~ span::before
+{
+    width: 100%;
+}
+
+.pass
+{
+    margin:-5px 0 20px 5px;
+    color:rgb(6, 0, 0);
+    cursor:pointer;
+}
+
+.pass:hover 
+{
+    color:rgb(135, 123, 16);
+    text-decoration: underline;
+}
+
+/* input[type="submit"]
+{
+    width:100%;
+    height:50px;
+    border:1px solid rgb(128, 117, 22);
+    border-radius: 25px;
+    background:rgb(128, 117, 22);
+    font-size: 16px;
+    color:white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: 0.5s;
+}
+
+input[type="submit"]:hover
+{
+    border-color: rgb(255, 255, 255);
+    transition: 0.5s;
+} */
+
+.loginbutton
+{
+    width:100%;
+    height:50px;
+    border:1px solid rgb(135, 123, 16);
+    border-radius: 25px;
+    background-image:linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    font-size: 16px;
+    color:white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    transition: 0.5s;
+}
+
+.loginbutton:hover
+{
+    background-image:linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
+}
+
+#mytokenform
+{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:550px;
+    height:auto;
+    background-image:linear-gradient(to right, rgb(237, 209, 99), rgb(246, 221, 122));
+    border:2px solid rgb(115, 105, 12); 
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+
+.myhidden
+{
+    display: none;
+    text-align: center;
+
+}
+
+.myclose-button {
+    background-color: red;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    font-family: verdana;
+    position:relative;
+    border:none;
+}
+
+.myclose-button:hover
+{
+    background-color: rgb(212, 0, 0);
+}
+
+.tokenmodel
+{
+    padding:70px;
+    padding-top:50px;
+}
+
+.tokeninput, select
+{
+    width: 80%;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.generatetoken
+{
+    height:50px;
+    width:170px;
+    background-image:linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    font-family: verdana;
+    border:none;
+    color:white;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.generatetoken:hover{
+    background-image:linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
+
+}
+
+
+
+/* .hi{
+    background-color:rgba(255, 255, 255, 0.5);
+    width:100%;
+    position:absolute;
+    top:70%;
+    left:0;
+}     */
+.tablecontainer{
+    width:90%;
+    margin: auto;
+    text-align: center;
+}
+
+table
+{
+    position:absolute;
+    top:40%;
+    width:90%;
+    border-collapse: collapse;
+    margin: auto;
+    
+}
+
+table td, table th{
+    padding:12px 15px;
+    border-bottom: .5px solid black;
+
+    text-align: center;
+    font-size: 16px;
+}
+
+table thead{
+    background-image: linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    color:#ffffff;
+}
+
+table tbody tr:nth-child(even){
+    background-image:linear-gradient(to right, rgb(249, 231, 159),rgb(237, 209, 99));
+}
+
+.removebtn
+{
+    background-image: linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    color:#ffffff;
+    padding:10px;
+    border:none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.removebtn:hover{
+    background-image:linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
+}
+
