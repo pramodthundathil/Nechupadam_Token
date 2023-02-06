@@ -37,7 +37,7 @@ body{
     background-image:linear-gradient(to right, rgb(80, 73, 10), rgb(115, 105, 12));
 }
 table thead{
-    background-image: linear-gradient(to right, rgb(135, 123, 16), rgb(176, 162, 31));
+    background-color: rgb(135, 123, 16);
     color:#ffffff;
 } 
 table{

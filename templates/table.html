@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{%static 'images/nechu.jpg' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -13,7 +14,7 @@
     </script>
     <link rel="stylesheet" href="{%static 'bootstrap/bootstrap.css' %}">
     <link rel="stylesheet" href="{%static 'css/style.css' %}">
-    <title>Document</title>
+    <title>Nechupadam</title>
     <style>
         body {
             margin: 0;
@@ -52,7 +53,7 @@
         }
         .serving{
 animation: anim1;
-animation-duration: 2s;
+animation-duration: 1s;
 animation-iteration-count: infinite;
         }
         @keyframes anim1 {
@@ -69,7 +70,7 @@ animation-iteration-count: infinite;
 
 <body style="background-image:linear-gradient(to right, rgb(237, 209, 99), rgb(249, 231, 159));">
     <ul>
-        <li><small>@Powerd by Zion</small> </li>
+        <!-- <li><small>@developed by Zion</small> </li> -->
     </ul>
     <div class="myheader">
         <a href="{%url 'SignOut' %}">
@@ -110,19 +111,28 @@ animation-iteration-count: infinite;
             </tbody>
         </table>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity=
+        "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous">
+    </script>
 
 <script>
+    var TABLE_URL = "{%url 'TableView' %}"
+
     function refresh() {
         $.ajax({
-        url: "{%url 'TableView' %}",
+        url: TABLE_URL  ,
         success: function(data) {
           $('#datadisplay').html(data);
+          console.log("haiiii")
         }
        });
       };
       
+      
       $(document).ready(function ($) {
-        refresh()})
+        refresh()});
         var int = setInterval("refresh()", 3000);
 </script>
 </body>
