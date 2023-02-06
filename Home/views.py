@@ -32,7 +32,7 @@ def Index(request):
         "form":form,
         "patients":patients
     }
-    return render(request,"Index.html",context)
+    return render(request,"index.html",context)
 
 @login_required(login_url="SignIn")
 def TableView(request):
