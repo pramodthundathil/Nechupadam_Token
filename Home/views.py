@@ -2,10 +2,12 @@ from django.shortcuts import render,redirect
 from .forms import PatientAddForm,TreatmentCategoryForm,ChairNumberForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-from .decorators import Admin_only
+from .decorators import Admin_only, unautenticated_user
 from django.contrib.auth.decorators import login_required
 from .models import PatientList,TreatmentCategory,ChairNumber,TokenGenerator
 
+
+@unautenticated_user
 def SignIn(request):
     if request.method == "POST":
         username = request.POST["uname"]

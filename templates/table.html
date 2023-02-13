@@ -52,9 +52,9 @@
             font-size: 30px;
         }
         .serving{
-animation: anim1;
-animation-duration: 1s;
-animation-iteration-count: infinite;
+            animation: anim1;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
         }
         @keyframes anim1 {
             from{
@@ -64,6 +64,14 @@ animation-iteration-count: infinite;
                 background-color: rgb(249, 231, 159) ;
             }
             
+        }
+        tbody tr{
+            border-bottom: .7px solid white;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+        tbody tr:nth-child(even){
+            background-color: rgb(237, 209, 99);
+
         }
     </style>
 </head>
